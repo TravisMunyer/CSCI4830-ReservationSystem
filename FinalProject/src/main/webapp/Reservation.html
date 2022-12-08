@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Reservation Registration</title>
+    </head>
+    <body>
+        <form action="CreateReservation" method="post">
+        	<a href="Login.html">Employee Login</a>
+            <p>First Name: <input type="text" name="f_name" required/></p>
+            <p>Last Name: <input type="text" name="l_name" required/></p>
+            <p>Email Address: <input type="email" id="email" name="emailAddr" required/></p>
+            <p>Number of Guests: <input type="number" name="num_guests" min="1" max="10" required/></p>
+            <p>Select Date: <input type="date" name="dateSelect" required/></p>
+            <p>Please select a time:<input type="time" name="time" min="08:00" max="21:00" step="900" required/></p>
+            <p>Notes (Optional): <input type="text" name="notes"/></p>
+            <p><input type="submit"></p>
+        </form>
+    </body>
+</html>
