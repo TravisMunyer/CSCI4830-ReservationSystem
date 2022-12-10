@@ -20,9 +20,6 @@ import javax.servlet.http.HttpServletResponse;
 public class CreateReservation extends HttpServlet {
     private static final long serialVersionUID = 1;
 
-    String dns = "ec2-54-242-41-88.compute-1.amazonaws.com";
-
-
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -71,9 +68,8 @@ public class CreateReservation extends HttpServlet {
             return;
         }
 
-
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://" + dns + ":3306/myDB", "root", "root");
+            connection = DriverManager.getConnection(Credentials.GetDbString(), "root", Credentials.GetDBPassword());
         } catch (SQLException e2) {
             // TODO Auto-generated catch block
             System.out.println("Connection Failed!:\n" + e2.getMessage());
@@ -84,9 +80,7 @@ public class CreateReservation extends HttpServlet {
         sql = "insert into Reservations (ReservationId,FName,LName,Notes,EmailAddress,NumClients,StartTime,IsCanceled) values(NULL,?,?,?,?,?,?,?);";
 
         try {
-
             statement1 = connection.prepareStatement(sql);
-            
             
             String fNameVal = firstName;
             String lNameVal = lastName;

@@ -26,9 +26,6 @@ import java.security.NoSuchAlgorithmException;
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	//String dns = "ec2-44-210-87-48.compute-1.amazonaws.com";
-	String dns = "ec2-18-206-231-52.compute-1.amazonaws.com";
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -77,7 +74,7 @@ public class LoginServlet extends HttpServlet {
         }
 
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://" + dns + ":3306/myDB", "root", "root");
+            connection = DriverManager.getConnection(Credentials.GetDbString(), "root", Credentials.GetDBPassword());
         } catch (SQLException e2) {
             // TODO Auto-generated catch block
             System.out.println("Connection Failed!:\n" + e2.getMessage());
