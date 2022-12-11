@@ -14,7 +14,7 @@ public class Credentials {
 	}
 	
 	public static String GetDnsName() {
-		return "ec2-54-91-168-195.compute-1.amazonaws.com";
+		return "ec2-54-82-210-8.compute-1.amazonaws.com";
 	}
 	
 	public static String GetDbString() {
