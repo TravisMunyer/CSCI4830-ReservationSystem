@@ -82,7 +82,7 @@ public class LoginServlet extends HttpServlet {
         System.out.println("SUCCESS!!!! You made it, take control     your database now!");
         System.out.println("Creating statement...");
 
-        sql = "SELECT * FROM Employees WHERE Username=?";
+        sql = "SELECT * FROM Employees WHERE Username=?;";
         
         try {
 
