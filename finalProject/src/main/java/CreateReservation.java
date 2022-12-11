@@ -6,7 +6,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -80,7 +84,7 @@ public class CreateReservation extends HttpServlet {
         sql = "insert into Reservations (ReservationId,FName,LName,Notes,EmailAddress,NumClients,StartTime,IsCanceled) values(NULL,?,?,?,?,?,?,?);";
 
         try {
-            statement1 = connection.prepareStatement(sql);
+            statement1 = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             
             String fNameVal = firstName;
             String lNameVal = lastName;
@@ -111,10 +115,23 @@ public class CreateReservation extends HttpServlet {
         try {
 
             statement1.executeUpdate();
+            
+            ResultSet result = statement1.getGeneratedKeys();
+            result.next();
+            int auto_id = result.getInt(1);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            Email.sendEmail(new String[] {email} , auto_id, LocalDateTime.parse(dateSel + " " + time, formatter));
+            
         } catch (SQLException e1) {
             // TODO Auto-generated catch block
             e1.printStackTrace();
-        }
+        } catch (AddressException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         out.println("Thank you for making your reservation!");
         out.println("Please look for a confirmation email shortly.");
         out.println("</body></html>");

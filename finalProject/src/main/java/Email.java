@@ -43,7 +43,7 @@ public class Email
 	
 	private static String GetLink(int reservationId) {
 		// This link method is not secure, as anyone can delete the reservation currently if the reservation ID is known. Suggest using a randomly generated confirmation ID or session ID to cancel.
-		return Credentials.GetDnsName() + "/FinalProject/DeleteReservation?id=" + reservationId;
+		return Credentials.GetDnsName() + ":8080/FinalProject/DeleteReservation?id=" + reservationId;
 	}
 
     private static MimeMessage draftEmailMessage(Session mailSession, String[] toEmails, int reservationId, LocalDateTime reservationTime) throws AddressException, MessagingException
