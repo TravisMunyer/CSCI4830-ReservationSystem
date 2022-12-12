@@ -124,7 +124,7 @@ public class LoginServlet extends HttpServlet {
                 if (pwdsalted.equals(securePassword))
                 {
                 	
-                	response.sendRedirect("welcome.jsp");
+                	response.sendRedirect("employeeViewRes.html");
                 	System.out.println("login successful");
                 }
                 else
@@ -132,7 +132,7 @@ public class LoginServlet extends HttpServlet {
                 	//out.println("<font color=red size=18> Login Failed! <br>");
                 	//out.println("<a href=login.jsp>Try Again </a>");
                 	
-                	response.sendRedirect("tryagain.jsp");
+                	response.sendRedirect("login.jsp");
                 	System.out.println("login failed");
                 }
             }
